@@ -906,3 +906,47 @@ input {
     padding: 20px;
   }
 }
+
+/* ==========================================================================
+   Jeux
+   ========================================================================== */
+
+.game-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
+}
+.game-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.game-card__cover {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  background: var(--paper);
+}
+.game-card__cover--empty {
+  display: grid;
+  place-items: center;
+  color: var(--subtle);
+}
+.game-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px 12px;
+}
+.game-card__title {
+  font-size: 14px;
+  line-height: 1.3;
+}
+.game-card__meta {
+  font-size: 12.5px;
+  color: var(--muted);
+}
