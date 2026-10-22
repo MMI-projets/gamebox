@@ -9,15 +9,9 @@ import { BaseTransformer } from '@adonisjs/core/transformers'
 export default class GameTransformer extends BaseTransformer<Game> {
   toObject() {
     return {
-      ...this.pick(this.resource, [
-        'id',
-        'title',
-        'publisher',
-        'genre',
-        'description',
-        'imageUrl',
-        'isVerified',
-      ]),
+      ...this.pick(this.resource, ['id', 'title', 'publisher', 'genre', 'description', 'imageUrl']),
+      // SQLite stocke les booléens en 0/1 : on les convertit en vrai booléen
+      isVerified: Boolean(this.resource.isVerified),
       // Date Luxon -> texte "AAAA-MM-JJ" (ou null si pas de date)
       releaseDate: this.resource.releaseDate?.toISODate() ?? null,
     }

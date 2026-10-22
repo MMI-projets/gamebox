@@ -4,9 +4,8 @@ import { UserSchema } from '#database/schema'
 import hash from '@adonisjs/core/services/hash'
 import { compose } from '@adonisjs/core/helpers'
 import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
-import {  hasMany } from '@adonisjs/lucid/orm'
-import type {  HasMany } from '@adonisjs/lucid/types/relations'
-
+import { hasMany } from '@adonisjs/lucid/orm'
+import type { HasMany } from '@adonisjs/lucid/types/relations'
 
 export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   // Un utilisateur peut avoir plusieurs jeux

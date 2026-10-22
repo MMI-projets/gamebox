@@ -9,7 +9,7 @@ export default class Game extends GameSchema {
   // Un jeu appartient à l'utilisateur qui l'a ajouté (colonne user_id)
   @belongsTo(() => User)
   declare user: BelongsTo<typeof User>
-    // Un jeu peut avoir plusieurs critiques
+  // Un jeu peut avoir plusieurs critiques
   @hasMany(() => Review)
   declare reviews: HasMany<typeof Review>
 }

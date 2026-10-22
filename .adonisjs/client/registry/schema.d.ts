@@ -141,13 +141,13 @@ export interface Registry {
     methods: ["POST"]
     pattern: '/games'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/game').gameValidator)>>
       paramsTuple: []
       params: {}
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/game').gameValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/games_controller').default['store']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/games_controller').default['store']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/games_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'games.edit': {

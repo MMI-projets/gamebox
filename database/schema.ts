@@ -8,7 +8,19 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 
 export class GameSchema extends BaseModel {
-  static $columns = ['createdAt', 'description', 'genre', 'id', 'imageUrl', 'isVerified', 'publisher', 'releaseDate', 'title', 'updatedAt', 'userId'] as const
+  static $columns = [
+    'createdAt',
+    'description',
+    'genre',
+    'id',
+    'imageUrl',
+    'isVerified',
+    'publisher',
+    'releaseDate',
+    'title',
+    'updatedAt',
+    'userId',
+  ] as const
   $columns = GameSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
@@ -35,7 +47,15 @@ export class GameSchema extends BaseModel {
 }
 
 export class ReviewSchema extends BaseModel {
-  static $columns = ['content', 'createdAt', 'gameId', 'id', 'rating', 'updatedAt', 'userId'] as const
+  static $columns = [
+    'content',
+    'createdAt',
+    'gameId',
+    'id',
+    'rating',
+    'updatedAt',
+    'userId',
+  ] as const
   $columns = ReviewSchema.$columns
   @column()
   declare content: string | null
@@ -54,7 +74,15 @@ export class ReviewSchema extends BaseModel {
 }
 
 export class UserSchema extends BaseModel {
-  static $columns = ['createdAt', 'email', 'fullName', 'id', 'password', 'role', 'updatedAt'] as const
+  static $columns = [
+    'createdAt',
+    'email',
+    'fullName',
+    'id',
+    'password',
+    'role',
+    'updatedAt',
+  ] as const
   $columns = UserSchema.$columns
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
