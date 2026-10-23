@@ -22,7 +22,6 @@ export interface ApiDefinition {
     store: typeof routes['session.store']
     destroy: typeof routes['session.destroy']
   }
-  dashboard: typeof routes['dashboard']
   reviews: {
     store: typeof routes['reviews.store']
     update: typeof routes['reviews.update']

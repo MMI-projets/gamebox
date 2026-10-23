@@ -10,6 +10,7 @@ export type NavItem = {
   label: string
   route: NavRoute
   icon?: LucideIcon
+  exact?: boolean
 }
 
 /**

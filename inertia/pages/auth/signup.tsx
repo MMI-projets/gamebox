@@ -4,15 +4,15 @@ import { Form, Link } from '@adonisjs/inertia/react'
 export default function Signup() {
   return (
     <>
-      <h1 className="auth__title">Create your account</h1>
-      <p className="auth__sub">Start building with the starter kit.</p>
+      <h1 className="auth__title">Créer votre compte</h1>
+      <p className="auth__sub">Rejoignez la communauté GameBox.</p>
 
       <Form route="new_account.store">
         {({ errors, processing }) => (
           <div className="auth__form">
             <div className="field">
               <label className="field__label" htmlFor="fullName">
-                Full name
+                Nom ou pseudo
               </label>
               <input
                 id="fullName"
@@ -20,7 +20,7 @@ export default function Signup() {
                 type="text"
                 className="field__input"
                 autoComplete="name"
-                placeholder="Ada Lovelace"
+                placeholder="Ellie"
                 aria-invalid={errors.fullName ? 'true' : 'false'}
               />
               {errors.fullName && <span className="field__error">{errors.fullName}</span>}
@@ -36,7 +36,7 @@ export default function Signup() {
                 type="email"
                 className="field__input"
                 autoComplete="email"
-                placeholder="you@example.com"
+                placeholder="vous@exemple.fr"
                 aria-invalid={errors.email ? 'true' : 'false'}
               />
               {errors.email && <span className="field__error">{errors.email}</span>}
@@ -44,7 +44,7 @@ export default function Signup() {
 
             <div className="field">
               <label className="field__label" htmlFor="password">
-                Password
+                Mot de passe
               </label>
               <input
                 id="password"
@@ -60,7 +60,7 @@ export default function Signup() {
 
             <div className="field">
               <label className="field__label" htmlFor="passwordConfirmation">
-                Confirm password
+                Confirmer le mot de passe
               </label>
               <input
                 id="passwordConfirmation"
@@ -82,16 +82,16 @@ export default function Signup() {
               disabled={processing}
               style={{ marginTop: 4 }}
             >
-              {processing ? 'One moment…' : 'Create account'}
+              {processing ? 'Un instant…' : 'Créer mon compte'}
             </button>
           </div>
         )}
       </Form>
 
       <p className="auth__foot">
-        Already have an account?{' '}
+        Déjà un compte ?{' '}
         <Link route="session.create" className="il">
-          Sign in
+          Se connecter
         </Link>
       </p>
     </>

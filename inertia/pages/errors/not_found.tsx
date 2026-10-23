@@ -1,24 +1,21 @@
-import MarketingLayout from '~/layouts/marketing'
+import { Head } from '@inertiajs/react'
+import AppLayout from '~/layouts/app'
+import { Link } from '@adonisjs/inertia/react'
 
 export default function NotFound() {
   return (
-    <div className="home">
-      <article className="prose-card">
-        <div className="pc-top">
-          <span className="pc-status mono tag" style={{ color: 'var(--subtle)' }}>
-            <span className="dot" /> 404
-          </span>
-        </div>
-        <div className="pc-lead">
-          <span>Not found.</span>
-          <em>That route hasn&apos;t been built yet.</em>
-        </div>
-        <p className="pc-para">
-          The page you tried to reach doesn&apos;t exist. Check the URL or head back home.
-        </p>
-      </article>
+    <div className="page">
+      <Head title="Page introuvable" />
+      <div className="empty">
+        <div className="empty__mark">404</div>
+        <h1>Page introuvable</h1>
+        <p>Ce jeu ou cette page n&apos;existe pas (ou plus).</p>
+        <Link route="games.index" className="btn btn--primary">
+          Retour au catalogue
+        </Link>
+      </div>
     </div>
   )
 }
 
-NotFound.layout = [MarketingLayout]
+NotFound.layout = [AppLayout]

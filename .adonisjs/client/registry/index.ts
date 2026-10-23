@@ -48,12 +48,6 @@ const routes = {
     tokens: [[0,"login"]],
     types: placeholder as Registry['session.store']['types'],
   },
-  'dashboard': {
-    methods: ["GET","HEAD"],
-    pattern: '/dashboard',
-    tokens: [[0,"dashboard"]],
-    types: placeholder as Registry['dashboard']['types'],
-  },
   'session.destroy': {
     methods: ["POST"],
     pattern: '/logout',

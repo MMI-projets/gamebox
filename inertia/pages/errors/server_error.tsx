@@ -1,25 +1,21 @@
-import MarketingLayout from '~/layouts/marketing'
+import { Head } from '@inertiajs/react'
+import AppLayout from '~/layouts/app'
+import { Link } from '@adonisjs/inertia/react'
 
 export default function ServerError() {
   return (
-    <div className="home">
-      <article className="prose-card">
-        <div className="pc-top">
-          <span className="pc-status mono tag" style={{ color: '#c0392b' }}>
-            <span className="dot" /> 500
-          </span>
-        </div>
-        <div className="pc-lead">
-          <span>Something broke.</span>
-          <em>The server hit an unexpected error.</em>
-        </div>
-        <p className="pc-para">
-          Try again in a moment. If the problem persists, check the server logs for the underlying
-          exception.
-        </p>
-      </article>
+    <div className="page">
+      <Head title="Erreur" />
+      <div className="empty">
+        <div className="empty__mark">500</div>
+        <h1>Une erreur est survenue</h1>
+        <p>Le serveur a rencontré un problème. Réessayez dans un instant.</p>
+        <Link route="home" className="btn btn--primary">
+          Retour à l&apos;accueil
+        </Link>
+      </div>
     </div>
   )
 }
 
-ServerError.layout = [MarketingLayout]
+ServerError.layout = [AppLayout]

@@ -11,7 +11,6 @@ export type ScannedRoutes = {
     'new_account.store': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
     'session.store': { paramsTuple?: []; params?: {} }
-    'dashboard': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.store': { paramsTuple?: []; params?: {} }
@@ -29,7 +28,6 @@ export type ScannedRoutes = {
     'games.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
-    'dashboard': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
@@ -39,7 +37,6 @@ export type ScannedRoutes = {
     'games.show': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'new_account.create': { paramsTuple?: []; params?: {} }
     'session.create': { paramsTuple?: []; params?: {} }
-    'dashboard': { paramsTuple?: []; params?: {} }
     'games.create': { paramsTuple?: []; params?: {} }
     'games.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }

@@ -1,5 +1,6 @@
 import Page from '~/components/page'
 import AppLayout from '~/layouts/app'
+import GameCard from '~/components/game_card'
 import { Gamepad2, Plus } from 'lucide-react'
 import { useState } from 'react'
 import { urlFor } from '~/client'
@@ -36,7 +37,7 @@ export default function GamesIndex({ games, genres, filters }: Props) {
 
   return (
     <Page
-      title="Jeux"
+      title="Catalogue"
       description={`${games.length} jeu${games.length > 1 ? 'x' : ''}`}
       actions={
         // Le bouton n'apparaît que si l'utilisateur est connecté
@@ -101,31 +102,7 @@ export default function GamesIndex({ games, genres, filters }: Props) {
       ) : (
         <ul className="game-grid">
           {games.map((game) => (
-            <li key={game.id} className="game-card">
-              {/* Toute la carte devient un lien vers /games/:id (route games.show) */}
-              <Link route="games.show" routeParams={{ id: game.id }} className="game-card__link">
-                {game.imageUrl ? (
-                  <img src={game.imageUrl} alt={game.title} className="game-card__cover" />
-                ) : (
-                  <div className="game-card__cover game-card__cover--empty">
-                    <Gamepad2 size={28} />
-                  </div>
-                )}
-                <div className="game-card__body">
-                  <strong className="game-card__title">{game.title}</strong>
-                  <span className="game-card__meta">
-                    {game.publisher}
-                    {game.releaseDate && ` · ${game.releaseDate.slice(0, 4)}`}
-                  </span>
-                  <span className="game-card__meta">
-                    {game.averageRating !== null
-                      ? `${game.averageRating} ★ · ${game.reviewsCount} critique${game.reviewsCount > 1 ? 's' : ''}`
-                      : 'Pas encore noté'}
-                    {!game.isVerified && ' · non vérifié'}
-                  </span>
-                </div>
-              </Link>
-            </li>
+            <GameCard key={game.id} game={game} />
           ))}
         </ul>
       )}

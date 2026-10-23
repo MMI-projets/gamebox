@@ -18,24 +18,14 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
             <ThemeToggle />
           </div>
 
-          <p className="auth__quote">
-            Auth, kept intentionally minimal so you can build it your way.
-          </p>
+          <p className="auth__quote">Notez, critiquez et partagez vos jeux préférés.</p>
 
           <div>
-            <div className="pitch__t">Looking for production-ready auth?</div>
+            <div className="pitch__t">GameBox</div>
             <p className="pitch__p">
-              Check out Feature packs, production-ready full-stack components from the creator of
-              AdonisJS.
+              Le carnet de jeux vidéo de la communauté : une note de 0,5 à 4 étoiles et une critique
+              par jeu.
             </p>
-            <a
-              className="il pitch__a"
-              href="https://plus.adonisjs.com/feature-packs"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Explore Feature packs →
-            </a>
           </div>
         </aside>
       </div>

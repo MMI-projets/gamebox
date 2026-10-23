@@ -15,8 +15,8 @@ import router from '@adonisjs/core/services/router'
 | Routes publiques : accessibles à tout le monde, connecté ou non
 */
 
-// Page d'accueil
-router.on('/').renderInertia('home', {}).as('home')
+// Page d'accueil : jeux les mieux notés et derniers ajouts
+router.get('/', [controllers.Home, 'index']).as('home')
 
 // Catalogue des jeux en lecture seule :
 // - index : GET /games      → liste des jeux
@@ -48,9 +48,6 @@ router
 */
 router
   .group(() => {
-    // Tableau de bord de l'utilisateur
-    router.on('/dashboard').renderInertia('dashboard', {}).as('dashboard')
-
     // Déconnexion
     router.post('logout', [controllers.Session, 'destroy'])
 
