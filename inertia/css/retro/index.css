@@ -1,0 +1,15 @@
+/* ==========================================================================
+   Thème rétro GameBox : point d'entrée
+   --------------------------------------------------------------------------
+   Ce fichier est importé dans inertia/app.tsx APRÈS app.css :
+   à sélecteur égal, les règles d'ici écrasent celles du starter.
+
+   L'ordre des imports compte : les variables d'abord (tout le reste
+   les utilise), puis du plus général au plus spécifique.
+   ========================================================================== */
+
+@import './tokens.css'; /* 1. variables : couleurs, polices, ombres */
+@import './base.css'; /* 2. styles de base : body, titres, liens */
+@import './components.css'; /* 3. boutons, champs, cartes, header */
+@import './pages.css'; /* 4. styles propres à une page (accueil, fiche…) */
+@import './effects.css'; /* 5. effets : scanlines, animations, glow */

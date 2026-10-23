@@ -1,0 +1,244 @@
+/* --- Accueil (inertia/pages/home.tsx) : un écran titre de jeu ------------- */
+
+.hero {
+  align-items: center;
+  text-align: center;
+  padding: 48px 24px;
+  background: var(--card);
+  border: var(--pixel-border, 3px solid var(--ink));
+  box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
+}
+
+.hero__press-start {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--accent, var(--ink));
+}
+
+.hero__title {
+  max-width: 20ch;
+  font-size: 30px;
+  line-height: 1.4;
+  text-shadow: 3px 3px 0 var(--line);
+}
+
+.hero__text {
+  max-width: 52ch;
+  font-size: 22px;
+  color: var(--ink-2);
+}
+
+.hero__actions {
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.hero__stats {
+  font-size: 18px;
+}
+
+.home-section__header {
+  padding-bottom: 10px;
+  border-bottom: 3px dashed var(--line-2);
+}
+.home-section__header h2 {
+  font-size: 13px;
+}
+
+/* --- Fiche d'un jeu (inertia/pages/games/show.tsx) ------------------------ */
+
+/* Jaquette à gauche, infos à droite */
+.game-detail {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.game-detail__cover {
+  aspect-ratio: 3 / 4;
+  background: var(--field);
+  border: var(--pixel-border, 3px solid var(--ink));
+  box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
+  overflow: hidden;
+}
+.game-detail__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+}
+.game-detail__no-cover {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: var(--subtle);
+}
+
+.game-detail__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Note moyenne en grand */
+.game-detail__rating {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+.game-detail__rating .stars {
+  font-size: 22px;
+}
+.game-detail__count {
+  color: var(--muted);
+}
+
+/* Liste "Éditeur / Genre / Sortie" sur deux colonnes */
+.game-detail__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 16px;
+}
+.game-detail__meta dt {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  line-height: 2.2;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.game-detail__description {
+  max-width: 60ch;
+  font-size: 21px;
+}
+
+/* Badges "vérifié" / "en attente" */
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  text-transform: uppercase;
+  border: 2px solid currentColor;
+}
+.badge--verified {
+  color: var(--accent, var(--ink));
+}
+.badge--pending {
+  color: var(--muted);
+  border-style: dashed;
+}
+
+/* Étoiles (note moyenne et critiques) */
+.stars {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: var(--star, var(--ink));
+  white-space: nowrap;
+}
+
+/* --- Critiques -------------------------------------------------------------- */
+
+.review-login,
+.review-form,
+.reviews {
+  margin-top: 36px;
+}
+
+.review-form {
+  padding: 20px;
+  background: var(--card);
+  border: var(--pixel-border, 3px solid var(--ink));
+}
+.review-form__title,
+.reviews__title {
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+.review-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 560px;
+}
+
+.reviews__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.reviews__empty {
+  color: var(--muted);
+}
+
+/* Une critique : comme une bulle de dialogue de RPG */
+.review {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 16px;
+  background: var(--card);
+  border: var(--pixel-border, 3px solid var(--ink));
+}
+.review__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.review__author {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  font-weight: 400;
+}
+.review__content {
+  font-size: 20px;
+  white-space: pre-wrap; /* garde les retours à la ligne de la critique */
+}
+
+/* --- Formulaires d'ajout / modification d'un jeu --------------------------- */
+
+.game-form {
+  border: var(--pixel-border, 3px solid var(--ink));
+  box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
+}
+
+/* --- Connexion / inscription (layouts/auth.tsx) ------------------------------ */
+
+.auth__aside {
+  background: var(--ink);
+  color: var(--paper);
+}
+.auth__quote {
+  font-family: var(--font-pixel);
+  font-size: 18px;
+  line-height: 1.6;
+}
+.pitch__t {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+}
+.pitch__p {
+  font-size: 19px;
+  color: var(--line);
+}
+
+/* --- Mobile ----------------------------------------------------------------- */
+
+@media (max-width: 720px) {
+  .hero__title {
+    font-size: 20px;
+  }
+  /* Jaquette au-dessus des infos */
+  .game-detail {
+    grid-template-columns: 1fr;
+  }
+  .game-detail__cover {
+    max-width: 220px;
+  }
+}

@@ -24,6 +24,7 @@ export default function Home({ topRated, latest, stats }: Props) {
 
       {/* ---------- Présentation ---------- */}
       <section className="hero">
+        <p className="hero__press-start">▶ PRESS START</p>
         <h1 className="hero__title">Notez les jeux vidéo auxquels vous jouez.</h1>
         <p className="hero__text">
           GameBox, c&apos;est le carnet de jeux de la communauté : parcourez le catalogue, donnez

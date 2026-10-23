@@ -8,8 +8,7 @@ import { Form, Link } from '@adonisjs/inertia/react'
 /**
  * Fiche d'un jeu. Props envoyées par GamesController.show.
  *
- * ⚠️ Mise en page volontairement minimale : le design et le CSS
- * sont à faire. Toute la logique (droits, données) est déjà branchée.
+ * Les styles de cette page sont dans inertia/css/retro/pages.css
  */
 type Props = InertiaProps<{
   game: Data.Game
@@ -64,30 +63,61 @@ export default function ShowGame({ game, reviews, userReview, can }: Props) {
       }
     >
       {/* ---------- Infos du jeu ---------- */}
-      <p>{game.isVerified ? '✔ Jeu vérifié' : '⏳ En attente de vérification'}</p>
-      <p>Éditeur : {game.publisher}</p>
-      <p>Genre : {game.genre || 'Non spécifié'}</p>
-      <p>Date de sortie : {game.releaseDate || 'Non spécifiée'}</p>
-      <p>Description : {game.description || 'Aucune description disponible'}</p>
-      {game.imageUrl && <img src={game.imageUrl} alt={game.title} />}
+      <div className="game-detail">
+        <div className="game-detail__cover">
+          {game.imageUrl ? (
+            <img src={game.imageUrl} alt={game.title} />
+          ) : (
+            <span className="game-detail__no-cover">Pas de jaquette</span>
+          )}
+        </div>
 
-      <p>
-        Note moyenne :{' '}
-        {game.averageRating !== null
-          ? `${game.averageRating} ★ (${game.reviewsCount} critique${game.reviewsCount > 1 ? 's' : ''})`
-          : 'Pas encore de note'}
-      </p>
+        <div className="game-detail__info">
+          <span className={`badge ${game.isVerified ? 'badge--verified' : 'badge--pending'}`}>
+            {game.isVerified ? '✔ Jeu vérifié' : '⏳ En attente de vérification'}
+          </span>
+
+          <p className="game-detail__rating">
+            {game.averageRating !== null ? (
+              <>
+                <span className="stars">{game.averageRating} ★</span>
+                <span className="game-detail__count">
+                  {game.reviewsCount} critique{game.reviewsCount > 1 ? 's' : ''}
+                </span>
+              </>
+            ) : (
+              <span className="game-detail__count">Pas encore de note</span>
+            )}
+          </p>
+
+          <dl className="game-detail__meta">
+            <dt>Éditeur</dt>
+            <dd>{game.publisher}</dd>
+            <dt>Genre</dt>
+            <dd>{game.genre || 'Non spécifié'}</dd>
+            <dt>Sortie</dt>
+            <dd>{game.releaseDate || 'Non spécifiée'}</dd>
+          </dl>
+
+          <p className="game-detail__description">
+            {game.description || 'Aucune description disponible.'}
+          </p>
+        </div>
+      </div>
 
       {/* ---------- Écrire ou modifier sa critique ---------- */}
       {!user && (
-        <p>
-          <Link route="session.create">Connectez-vous</Link> pour noter ce jeu.
+        <p className="review-login">
+          <Link route="session.create" className="il">
+            Connectez-vous
+          </Link>{' '}
+          pour noter ce jeu.
         </p>
       )}
 
       {(can.review || userReview) && (
-        <section>
-          <h2>{userReview ? 'Ma critique' : 'Noter ce jeu'}</h2>
+        <section className="review-form">
+          <h2 className="review-form__title">{userReview ? 'Ma critique' : 'Noter ce jeu'}</h2>
 
           {/* Même formulaire pour publier (store) ou modifier (update) */}
           <Form
@@ -97,7 +127,7 @@ export default function ShowGame({ game, reviews, userReview, can }: Props) {
             options={{ preserveScroll: true }}
           >
             {({ errors, processing }) => (
-              <>
+              <div className="review-form__fields">
                 <div className="field">
                   <label className="field__label" htmlFor="rating">
                     Note
@@ -119,37 +149,43 @@ export default function ShowGame({ game, reviews, userReview, can }: Props) {
 
                 <div className="field">
                   <label className="field__label" htmlFor="content">
-                    Critique (facultatif)
+                    Critique <span className="field__optional">(facultatif)</span>
                   </label>
                   <textarea
                     id="content"
                     name="content"
                     rows={4}
-                    className="field__input"
+                    className="field__input field__input--textarea"
                     defaultValue={userReview?.content ?? ''}
                   />
                   {errors.content && <span className="field__error">{errors.content}</span>}
                 </div>
 
-                <button type="submit" className="btn btn--primary" disabled={processing}>
-                  {userReview ? 'Modifier ma critique' : 'Publier'}
-                </button>
-              </>
+                <div>
+                  <button type="submit" className="btn btn--primary" disabled={processing}>
+                    {userReview ? 'Modifier ma critique' : 'Publier'}
+                  </button>
+                </div>
+              </div>
             )}
           </Form>
         </section>
       )}
 
       {/* ---------- Liste des critiques ---------- */}
-      <section>
-        <h2>Critiques ({reviews.length})</h2>
-        {reviews.length === 0 && <p>Aucune critique pour le moment.</p>}
+      <section className="reviews">
+        <h2 className="reviews__title">Critiques ({reviews.length})</h2>
+        {reviews.length === 0 && <p className="reviews__empty">Aucune critique pour le moment.</p>}
 
-        <ul>
+        <ul className="reviews__list">
           {reviews.map((review) => (
-            <li key={review.id}>
-              <strong>{review.authorName}</strong> — {review.stars} ★
-              {review.content && <p>{review.content}</p>}
+            <li key={review.id} className="review">
+              <div className="review__header">
+                <strong className="review__author">{review.authorName}</strong>
+                <span className="stars">{review.stars} ★</span>
+              </div>
+              {review.content && <p className="review__content">{review.content}</p>}
+
               {/* Auteur de la critique ou admin : supprimer */}
               {user && (user.id === review.userId || user.isAdmin) && (
                 <Form

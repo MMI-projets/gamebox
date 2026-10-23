@@ -1,0 +1,82 @@
+/* ==========================================================================
+   2. Base
+   --------------------------------------------------------------------------
+   Styles appliqués aux balises HTML elles-mêmes (body, h1, a…).
+   Les polices et les couleurs viennent de tokens.css.
+   ========================================================================== */
+
+/* Texte courant : la police "terminal".
+   VT323 est petite : on grossit le texte de toute la page. */
+body {
+  font-family: var(--font-crt);
+  font-size: 1.1rem;
+  line-height: 1.35;
+  color: var(--ink);
+  background-color: var(--paper);
+  /* Grille discrète en fond, comme du papier millimétré de level design */
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Le contenu principal laisse voir la grille du body */
+.app-main {
+  background: transparent;
+}
+
+/* Titres : la police pixel.
+   Press Start 2P est très large : on garde des tailles modestes. */
+h1,
+h2,
+h3 {
+  font-family: var(--font-pixel);
+  font-weight: 400; /* une seule graisse dans cette police */
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* Les classes de titre du starter ont leur propre police : on les écrase */
+.page__title,
+.auth__title,
+.hero__title,
+.empty h1,
+.empty h2 {
+  font-family: var(--font-pixel);
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.page__title {
+  font-size: 1.8rem;
+}
+.auth__title {
+  font-size: 1.5rem;
+}
+
+/* Sous-titres et textes d'accompagnement */
+.page__description,
+.auth__sub,
+.auth__foot {
+  font-family: var(--font-crt);
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+/* Texte surligné à la souris : couleurs inversées */
+::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Barre de défilement carrée (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 14px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+  border-left: 3px solid var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-2);
+  border: 3px solid var(--paper);
+}

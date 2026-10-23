@@ -1,0 +1,61 @@
+/* ==========================================================================
+   5. Effets
+   --------------------------------------------------------------------------
+   Les petits détails qui font "rétro".
+   ========================================================================== */
+
+/* --- Scanlines : les lignes horizontales d'un vieil écran cathodique ------
+   Un pseudo-élément posé PAR-DESSUS toute la page. */
+body::after {
+  content: ''; /* obligatoire : sans content, le pseudo-élément n'existe pas */
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none; /* sinon il bloquerait tous les clics de la page */
+  background: repeating-linear-gradient(to bottom, rgba(0, 0, 0, 0.06) 0 1px, transparent 1px 3px);
+}
+
+/* --- "PRESS START" qui clignote sur l'accueil ------------------------------ */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+.hero__press-start {
+  /* steps(1) : le texte disparaît d'un coup, sans fondu, comme dans un jeu */
+  animation: blink 1.2s steps(1) infinite;
+}
+
+/* --- Glow phosphorescent, uniquement en thème sombre ------------------------ */
+:root[data-theme='dark'] .hero__title,
+:root[data-theme='dark'] .page__title,
+:root[data-theme='dark'] .logo__text {
+  text-shadow: 0 0 6px var(--accent, currentColor);
+}
+
+/* --- Apparition des cartes de jeu : petit "pop" en 3 étapes ---------------- */
+@keyframes pop-in {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.game-card {
+  animation: pop-in 0.25s steps(3);
+}
+
+/* --- Accessibilité : OBLIGATOIRE si tu ajoutes des animations -------------
+   Certaines personnes sont gênées par les animations (vertiges,
+   épilepsie). Ce bloc les coupe si elles l'ont demandé à leur système. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

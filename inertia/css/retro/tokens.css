@@ -1,0 +1,48 @@
+:root {
+  /* --- Polices (chargées dans resources/views/inertia_layout.edge) --- */
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-crt: 'VT323', monospace;
+
+  /* --- Couleurs du thème rétro --- */
+  --paper: #c4cfa1;
+  --card: #dfe7c3;
+  --ink: #0f380f;
+  --ink-2: #1e4d1e;
+  --muted: #285428;
+  --subtle: #5b7a3a;
+  --line: #a9b97d;
+  --line-2: #306230;
+  --btn: #0f380f;
+  --btn-fg: #c4cfa1;
+  --field: #eef3d8;
+  --ring: rgba(15, 56, 15, 0.25);
+  --r: 0;
+  --r-lg: 0;
+
+  --accent: #306230;
+  --accent-2: #8bac0f; /* le vert "allumé" de la Game Boy */
+  --star: #8b6d00; /* étoiles : or foncé, lisible sur le vert */
+  --pixel-border: 3px solid var(--ink);
+  --pixel-shadow: 4px 4px 0 var(--ink);
+}
+
+:root[data-theme='dark'] {
+  --paper: #0b1a0b; /* fond : écran éteint, presque noir */
+  --card: #122612; /* cartes : un cran plus clair */
+  --ink: #c4dc8c; /* texte : vert pâle de l'écran allumé */
+  --ink-2: #a8c46a;
+  --muted: #8bac0f;
+  --subtle: #5f7d2a;
+  --line: #1f3d1f;
+  --line-2: #4a7a2a;
+  --btn: #9bbc0f; /* boutons : le vert "allumé" de la Game Boy */
+  --btn-fg: #0b1a0b;
+  --field: #0e200e;
+  --ring: rgba(155, 188, 15, 0.3);
+
+  --accent: #9bbc0f;
+  --accent-2: #c4dc8c;
+  --star: #e0c341; /* étoiles : jaune doré, ressort bien sur le vert */
+  --pixel-border: 3px solid var(--line-2);
+  --pixel-shadow: 4px 4px 0 #000;
+}
