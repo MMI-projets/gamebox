@@ -167,13 +167,13 @@ export interface Registry {
     methods: ["PUT","PATCH"]
     pattern: '/games/:id'
     types: {
-      body: {}
+      body: ExtractBody<InferInput<(typeof import('#validators/game').gameValidator)>>
       paramsTuple: [ParamValue]
       params: { id: ParamValue }
-      query: {}
+      query: ExtractQuery<InferInput<(typeof import('#validators/game').gameValidator)>>
       response: ExtractResponse<Awaited<ReturnType<import('#controllers/games_controller').default['update']>>>
-      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/games_controller').default['update']>>>
-      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/games_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
     }
   }
   'games.destroy': {

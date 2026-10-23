@@ -53,12 +53,30 @@ export default class GamesController {
   /**
    * Edit individual record
    */
-  async edit({ params }: HttpContext) {}
+  async edit({ params, inertia }: HttpContext) {
+    // findOrFail renvoie le jeu, ou affiche une 404 s'il n'existe pas :
+    // pas besoin de vérifier si le jeu existe après
+    const game = await Game.findOrFail(params.id)
+    return inertia.render('games/edit', { game: GameTransformer.transform(game) })
+  }
 
   /**
    * Handle form submission for the edit action
    */
-  async update({ params, request }: HttpContext) {}
+  async update({ params, request, response, session }: HttpContext) {
+    // 1. Chercher le jeu à modifier (404 s'il n'existe pas)
+    const game = await Game.findOrFail(params.id)
+
+    // 2. Valider les données du formulaire (même validateur que pour l'ajout)
+    const payload = await request.validateUsing(gameValidator)
+
+    // 3. Remplacer les anciennes valeurs par les nouvelles, puis enregistrer
+    await game.merge(payload).save()
+
+    // 4. Message de confirmation + retour sur la fiche du jeu
+    session.flash('success', 'Jeu modifié')
+    return response.redirect().toRoute('games.show', { id: game.id })
+  }
 
   /**
    * Delete record
