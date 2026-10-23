@@ -26,6 +26,12 @@ router
   .only(['index', 'show'])
   .where('id', router.matchers.number())
 
+// Profil public d'un utilisateur : GET /users/:id
+router
+  .get('users/:id', [controllers.Users, 'show'])
+  .where('id', router.matchers.number())
+  .as('users.show')
+
 /*
 | Routes "invité" : réservées aux visiteurs NON connectés
 | (un utilisateur déjà connecté est redirigé)

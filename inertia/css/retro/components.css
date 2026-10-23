@@ -4,8 +4,8 @@
   height: 40px;
   padding: 0 16px;
   font-family: var(--font-pixel);
-  font-size: 10px;
-  font-weight: 400; /* la police pixel n'a qu'une seule graisse */
+  font-size: 0.625rem;
+  font-weight: 400; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: var(--pixel-border, 3px solid var(--ink));
@@ -46,7 +46,7 @@
   color: var(--btn-fg);
 }
 .btn--primary:hover {
-  opacity: 1; /* annule l'effet du starter */
+  opacity: 1; 
 }
 
 .btn--secondary {
@@ -72,7 +72,7 @@
 .btn--sm {
   height: 34px;
   padding: 0 12px;
-  font-size: 9px;
+  font-size: 0.5625rem;
   box-shadow: 3px 3px 0 var(--ink);
 }
 
@@ -90,7 +90,7 @@
 
 .field__label {
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 0.5625rem;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -100,7 +100,7 @@
 .field__input {
   height: 44px;
   font-family: var(--font-crt);
-  font-size: 20px;
+  font-size: 1.25rem;
   background: var(--field);
   border: var(--pixel-border, 3px solid var(--ink));
   box-shadow: inset 3px 3px 0 var(--line); /* effet "creusé" */
@@ -126,13 +126,13 @@
 
 .field__optional {
   font-family: var(--font-crt);
-  font-size: 15px;
+  font-size: 0.9375rem;
   text-transform: none;
 }
 
 .field__error {
   font-family: var(--font-crt);
-  font-size: 17px;
+  font-size: 1.0625rem;
   color: var(--danger, #8b1e1e);
 }
 .field__error::before {
@@ -163,21 +163,21 @@
 }
 .logo__text {
   font-family: var(--font-pixel);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0;
 }
 
 .user-menu__name {
   font-family: var(--font-crt);
-  font-size: 19px;
+  font-size: 1.1875rem;
   color: var(--ink-2);
 }
 .user-menu__badge {
   border-radius: 0;
   padding: 2px 6px;
   font-family: var(--font-pixel);
-  font-size: 8px;
+  font-size: 0.5rem;
   font-weight: 400;
   text-transform: uppercase;
   background: var(--accent, var(--btn));
@@ -188,14 +188,14 @@
 }
 .subnav__item {
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   text-transform: uppercase;
 }
 /* Onglet actif : un curseur "▶" comme dans un menu de jeu */
 .subnav__item[aria-current='page']::before {
   content: '▶';
-  font-size: 8px;
+  font-size: 0.5rem;
   color: var(--accent, var(--ink));
 }
 .subnav__item[aria-current='page']::after {
@@ -242,13 +242,13 @@
 }
 .game-card__title {
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
   line-height: 1.5;
 }
 .game-card__meta {
   font-family: var(--font-crt);
-  font-size: 17px;
+  font-size: 1.0625rem;
   line-height: 1.1;
   color: var(--muted);
 }
@@ -260,12 +260,12 @@
   border: var(--pixel-border, 3px solid var(--ink));
   box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
   font-family: var(--font-pixel);
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--ink);
 }
 .empty p {
   font-family: var(--font-crt);
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 /* --- Barre de recherche du catalogue --------------------------------------- */
@@ -289,5 +289,5 @@
   box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
 }
 [data-sonner-toaster] [data-sonner-toast] [data-title] {
-  font-size: 20px;
+  font-size: 1.25rem;
 }

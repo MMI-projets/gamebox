@@ -11,20 +11,20 @@
 
 .hero__press-start {
   font-family: var(--font-pixel);
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--accent, var(--ink));
 }
 
 .hero__title {
   max-width: 20ch;
-  font-size: 30px;
+  font-size: 1.875rem;
   line-height: 1.4;
   text-shadow: 3px 3px 0 var(--line);
 }
 
 .hero__text {
   max-width: 52ch;
-  font-size: 22px;
+  font-size: 1.375rem;
   color: var(--ink-2);
 }
 
@@ -34,7 +34,7 @@
 }
 
 .hero__stats {
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .home-section__header {
@@ -42,7 +42,7 @@
   border-bottom: 3px dashed var(--line-2);
 }
 .home-section__header h2 {
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 
 /* --- Fiche d'un jeu (inertia/pages/games/show.tsx) ------------------------ */
@@ -73,7 +73,7 @@
   place-items: center;
   height: 100%;
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 0.5625rem;
   color: var(--subtle);
 }
 
@@ -91,7 +91,7 @@
   gap: 12px;
 }
 .game-detail__rating .stars {
-  font-size: 22px;
+  font-size: 1.375rem;
 }
 .game-detail__count {
   color: var(--muted);
@@ -105,7 +105,7 @@
 }
 .game-detail__meta dt {
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 0.5625rem;
   line-height: 2.2;
   text-transform: uppercase;
   color: var(--muted);
@@ -113,7 +113,7 @@
 
 .game-detail__description {
   max-width: 60ch;
-  font-size: 21px;
+  font-size: 1.3125rem;
 }
 
 /* Badges "vérifié" / "en attente" */
@@ -121,7 +121,7 @@
   display: inline-block;
   padding: 4px 8px;
   font-family: var(--font-pixel);
-  font-size: 8px;
+  font-size: 0.5rem;
   text-transform: uppercase;
   border: 2px solid currentColor;
 }
@@ -136,7 +136,7 @@
 /* Étoiles (note moyenne et critiques) */
 .stars {
   font-family: var(--font-pixel);
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--star, var(--ink));
   white-space: nowrap;
 }
@@ -157,7 +157,7 @@
 .review-form__title,
 .reviews__title {
   margin-bottom: 16px;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .review-form__fields {
   display: flex;
@@ -193,11 +193,11 @@
 }
 .review__author {
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 0.625rem;
   font-weight: 400;
 }
 .review__content {
-  font-size: 20px;
+  font-size: 1.25rem;
   white-space: pre-wrap; /* garde les retours à la ligne de la critique */
 }
 
@@ -216,15 +216,15 @@
 }
 .auth__quote {
   font-family: var(--font-pixel);
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.6;
 }
 .pitch__t {
   font-family: var(--font-pixel);
-  font-size: 11px;
+  font-size: 0.6875rem;
 }
 .pitch__p {
-  font-size: 19px;
+  font-size: 1.1875rem;
   color: var(--line);
 }
 
@@ -232,7 +232,7 @@
 
 @media (max-width: 720px) {
   .hero__title {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   /* Jaquette au-dessus des infos */
   .game-detail {
@@ -240,5 +240,140 @@
   }
   .game-detail__cover {
     max-width: 220px;
+  }
+}
+
+/* --- Profil utilisateur (inertia/pages/users/show.tsx) ---------------------- */
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+  background: var(--card);
+  border: var(--pixel-border, 3px solid var(--ink));
+  box-shadow: var(--pixel-shadow, 4px 4px 0 var(--ink));
+}
+/* Avatar : les initiales dans un carré, comme un sprite */
+.profile__avatar {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  flex: none;
+  font-family: var(--font-pixel);
+  font-size: 1.125rem;
+  color: var(--btn-fg);
+  background: var(--btn);
+  box-shadow: 4px 4px 0 var(--accent-2, var(--line-2));
+}
+.profile__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-pixel);
+  font-size: 1rem;
+}
+.profile__since {
+  color: var(--muted);
+}
+
+/* Les 3 chiffres clés */
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  background: var(--card);
+  border: var(--pixel-border, 3px solid var(--ink));
+}
+.profile-stat__value {
+  font-family: var(--font-pixel);
+  font-size: 1.25rem;
+  color: var(--accent, var(--ink));
+}
+.profile-stat__label {
+  color: var(--muted);
+}
+
+.profile-section {
+  margin-top: 36px;
+}
+.profile-section__title {
+  margin-bottom: 16px;
+  font-size: 0.8125rem;
+}
+
+/* Graphique en barres horizontales "pixel" */
+.rating-chart {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 520px;
+}
+.rating-chart__row {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr 2rem;
+  align-items: center;
+  gap: 10px;
+}
+.rating-chart__label {
+  font-family: var(--font-pixel);
+  font-size: 0.5625rem;
+  color: var(--star, var(--ink));
+}
+.rating-chart__track {
+  height: 16px;
+  background: var(--field);
+  border: 2px solid var(--line-2);
+}
+.rating-chart__bar {
+  display: block;
+  height: 100%;
+  background: var(--accent, var(--ink));
+}
+.rating-chart__count {
+  text-align: right;
+  color: var(--muted);
+}
+
+/* Critique avec la jaquette du jeu à gauche */
+.review--with-game {
+  flex-direction: row;
+  gap: 14px;
+}
+.review__game-cover {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  aspect-ratio: 3 / 4;
+  flex: none;
+  overflow: hidden;
+  background: var(--field);
+  border: 2px solid var(--ink);
+  color: var(--subtle);
+}
+.review__game-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.review__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+@media (max-width: 720px) {
+  .profile-stats {
+    grid-template-columns: 1fr;
   }
 }

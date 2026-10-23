@@ -24,6 +24,12 @@ const routes = {
     tokens: [[0,"games"],[1,"id"]],
     types: placeholder as Registry['games.show']['types'],
   },
+  'users.show': {
+    methods: ["GET","HEAD"],
+    pattern: '/users/:id',
+    tokens: [[0,"users"],[1,"id"]],
+    types: placeholder as Registry['users.show']['types'],
+  },
   'new_account.create': {
     methods: ["GET","HEAD"],
     pattern: '/signup',

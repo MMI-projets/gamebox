@@ -13,6 +13,9 @@ export interface ApiDefinition {
     destroy: typeof routes['games.destroy']
     verify: typeof routes['games.verify']
   }
+  users: {
+    show: typeof routes['users.show']
+  }
   newAccount: {
     create: typeof routes['new_account.create']
     store: typeof routes['new_account.store']

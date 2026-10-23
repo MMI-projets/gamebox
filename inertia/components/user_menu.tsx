@@ -25,10 +25,16 @@ export default function UserMenu() {
 
   return (
     <>
-      <span className="user-menu__name">
+      {/* Le nom mène au profil de l'utilisateur connecté */}
+      <Link
+        route="users.show"
+        routeParams={{ id: user.id }}
+        className="user-menu__name"
+        title="Mon profil"
+      >
         {user.fullName ?? user.email}
         {user.isAdmin && <span className="user-menu__badge">admin</span>}
-      </span>
+      </Link>
       <Form route="session.destroy">
         <button type="submit" className="btn btn--secondary btn--sm">
           <LogOut size={15} /> Déconnexion

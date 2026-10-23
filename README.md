@@ -29,7 +29,7 @@ Projet réalisé dans le cadre du TD AdonisJS .
 - [x] Modération : un admin peut supprimer n'importe quelle critique
 - [x] Recherche par titre, filtre par genre, tri (titre, mieux notés, ajouts récents)
 - [ ] Demandes de modification avec justification, validées par un admin
-- [ ] Page de profil avec les critiques d'un utilisateur
+- [x] Profil public : critiques, jeux ajoutés et statistiques (note moyenne donnée, répartition des notes)
 - [ ] Commentaires sous les critiques
 
 ## Technologies
@@ -73,6 +73,7 @@ role ('user' | 'admin')   genre                       content  (facultatif)
 | PUT     | `/games/:id`              | `GamesController.update`    | auteur ou admin |
 | DELETE  | `/games/:id`              | `GamesController.destroy`   | auteur ou admin |
 | PATCH   | `/games/:id/verify`       | `GamesController.verify`    | admin           |
+| GET     | `/users/:id`              | `UsersController.show`      | public          |
 | POST    | `/games/:game_id/reviews` | `ReviewsController.store`   | connecté        |
 | PUT     | `/reviews/:id`            | `ReviewsController.update`  | auteur          |
 | DELETE  | `/reviews/:id`            | `ReviewsController.destroy` | auteur ou admin |

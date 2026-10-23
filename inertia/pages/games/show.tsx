@@ -181,7 +181,13 @@ export default function ShowGame({ game, reviews, userReview, can }: Props) {
           {reviews.map((review) => (
             <li key={review.id} className="review">
               <div className="review__header">
-                <strong className="review__author">{review.authorName}</strong>
+                <Link
+                  route="users.show"
+                  routeParams={{ id: review.userId }}
+                  className="review__author il"
+                >
+                  {review.authorName}
+                </Link>
                 <span className="stars">{review.stars} ★</span>
               </div>
               {review.content && <p className="review__content">{review.content}</p>}
