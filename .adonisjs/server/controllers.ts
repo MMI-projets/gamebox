@@ -6,5 +6,6 @@
 export const controllers = {
   Games: () => import('#controllers/games_controller'),
   NewAccount: () => import('#controllers/new_account_controller'),
+  Reviews: () => import('#controllers/reviews_controller'),
   Session: () => import('#controllers/session_controller'),
 }

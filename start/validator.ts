@@ -33,6 +33,9 @@ vine.messagesProvider = new SimpleMessagesProvider(
     'minLength': 'Le champ {{ field }} doit contenir au moins {{ min }} caractères',
     'maxLength': 'Le champ {{ field }} ne doit pas dépasser {{ max }} caractères',
     'url': 'Le champ {{ field }} doit être une URL valide (https://...)',
+    'number': 'Le champ {{ field }} doit être un nombre',
+    'withoutDecimals': 'Le champ {{ field }} doit être un nombre entier',
+    'range': 'Le champ {{ field }} doit être compris entre {{ min }} et {{ max }}',
     'date': 'Le champ {{ field }} doit être une date valide',
     'date.equals': 'Le champ {{ field }} doit être une date valide',
     'email': "L'adresse email n'est pas valide",
@@ -46,6 +49,8 @@ vine.messagesProvider = new SimpleMessagesProvider(
     releaseDate: 'date de sortie',
     description: 'description',
     imageUrl: "URL de l'image",
+    rating: 'note',
+    content: 'critique',
     fullName: 'nom complet',
     password: 'mot de passe',
   }

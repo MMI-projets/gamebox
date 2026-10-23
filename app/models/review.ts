@@ -12,4 +12,18 @@ export default class Review extends ReviewSchema {
   // Une critique concerne un jeu (colonne game_id)
   @belongsTo(() => Game)
   declare game: BelongsTo<typeof Game>
+
+  /**
+   * Seul l'auteur peut modifier sa critique
+   */
+  canBeEditedBy(user?: User | null) {
+    return !!user && user.id === this.userId
+  }
+
+  /**
+   * L'auteur ou un admin (modération) peut supprimer une critique
+   */
+  canBeDeletedBy(user?: User | null) {
+    return !!user && (user.isAdmin || user.id === this.userId)
+  }
 }

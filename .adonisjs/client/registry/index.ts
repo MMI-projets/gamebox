@@ -90,6 +90,30 @@ const routes = {
     tokens: [[0,"games"],[1,"id"]],
     types: placeholder as Registry['games.destroy']['types'],
   },
+  'games.verify': {
+    methods: ["PATCH"],
+    pattern: '/games/:id/verify',
+    tokens: [[0,"games"],[1,"id"],[0,"verify"]],
+    types: placeholder as Registry['games.verify']['types'],
+  },
+  'reviews.store': {
+    methods: ["POST"],
+    pattern: '/games/:game_id/reviews',
+    tokens: [[0,"games"],[1,"game_id"],[0,"reviews"]],
+    types: placeholder as Registry['reviews.store']['types'],
+  },
+  'reviews.update': {
+    methods: ["PUT"],
+    pattern: '/reviews/:id',
+    tokens: [[0,"reviews"],[1,"id"]],
+    types: placeholder as Registry['reviews.update']['types'],
+  },
+  'reviews.destroy': {
+    methods: ["DELETE"],
+    pattern: '/reviews/:id',
+    tokens: [[0,"reviews"],[1,"id"]],
+    types: placeholder as Registry['reviews.destroy']['types'],
+  },
 } as const satisfies Record<string, AdonisEndpoint>
 
 export { routes }

@@ -999,3 +999,15 @@ input {
 .game-card:hover {
   border-color: var(--ink);
 }
+
+/* barre de recherche (à styliser) */
+.game-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.game-filters .field__input {
+  width: auto;
+  flex: 1 1 160px;
+}

@@ -11,6 +11,7 @@ export interface ApiDefinition {
     edit: typeof routes['games.edit']
     update: typeof routes['games.update']
     destroy: typeof routes['games.destroy']
+    verify: typeof routes['games.verify']
   }
   newAccount: {
     create: typeof routes['new_account.create']
@@ -22,4 +23,9 @@ export interface ApiDefinition {
     destroy: typeof routes['session.destroy']
   }
   dashboard: typeof routes['dashboard']
+  reviews: {
+    store: typeof routes['reviews.store']
+    update: typeof routes['reviews.update']
+    destroy: typeof routes['reviews.destroy']
+  }
 }

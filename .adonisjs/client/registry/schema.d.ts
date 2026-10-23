@@ -189,4 +189,56 @@ export interface Registry {
       rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['destroy']>>>
     }
   }
+  'games.verify': {
+    methods: ["PATCH"]
+    pattern: '/games/:id/verify'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/games_controller').default['verify']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/games_controller').default['verify']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/games_controller').default['verify']>>>
+    }
+  }
+  'reviews.store': {
+    methods: ["POST"]
+    pattern: '/games/:game_id/reviews'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/review').reviewValidator)>>
+      paramsTuple: [ParamValue]
+      params: { game_id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/review').reviewValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['store']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['store']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'reviews.update': {
+    methods: ["PUT"]
+    pattern: '/reviews/:id'
+    types: {
+      body: ExtractBody<InferInput<(typeof import('#validators/review').reviewValidator)>>
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: ExtractQuery<InferInput<(typeof import('#validators/review').reviewValidator)>>
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['update']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['update']>>> | { status: 422; response: { errors: SimpleError[] } }
+    }
+  }
+  'reviews.destroy': {
+    methods: ["DELETE"]
+    pattern: '/reviews/:id'
+    types: {
+      body: {}
+      paramsTuple: [ParamValue]
+      params: { id: ParamValue }
+      query: {}
+      response: ExtractResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['destroy']>>>
+      errorResponse: ExtractErrorResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['destroy']>>>
+      rawResponse: ExtractRawResponse<Awaited<ReturnType<import('#controllers/reviews_controller').default['destroy']>>>
+    }
+  }
 }

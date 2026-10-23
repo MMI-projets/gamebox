@@ -64,5 +64,28 @@ router
       .resource('games', controllers.Games)
       .except(['index', 'show'])
       .where('id', router.matchers.number())
+
+    // Admin : vérifier / retirer la vérification d'un jeu
+    router
+      .patch('games/:id/verify', [controllers.Games, 'verify'])
+      .where('id', router.matchers.number())
+      .as('games.verify')
+
+    // Critiques :
+    // - store   : POST   /games/:game_id/reviews → publier sa critique sur un jeu
+    // - update  : PUT    /reviews/:id            → modifier sa critique
+    // - destroy : DELETE /reviews/:id            → supprimer une critique
+    router
+      .post('games/:game_id/reviews', [controllers.Reviews, 'store'])
+      .where('game_id', router.matchers.number())
+      .as('reviews.store')
+    router
+      .put('reviews/:id', [controllers.Reviews, 'update'])
+      .where('id', router.matchers.number())
+      .as('reviews.update')
+    router
+      .delete('reviews/:id', [controllers.Reviews, 'destroy'])
+      .where('id', router.matchers.number())
+      .as('reviews.destroy')
   })
   .use(middleware.auth())

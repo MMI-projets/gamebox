@@ -24,3 +24,13 @@ export const gameValidator = vine.create({
   // Doit être une vraie URL (http://... ou https://...)
   imageUrl: vine.string().trim().url().maxLength(255).nullable(),
 })
+
+/**
+ * Filtres de la liste des jeux (paramètres de l'URL : /games?search=...)
+ * Tout est facultatif.
+ */
+export const gameFiltersValidator = vine.create({
+  search: vine.string().trim().maxLength(100).optional(),
+  genre: vine.string().trim().maxLength(100).optional(),
+  sort: vine.enum(['title', 'rating', 'recent'] as const).optional(),
+})

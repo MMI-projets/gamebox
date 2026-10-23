@@ -18,6 +18,10 @@ export type ScannedRoutes = {
     'games.edit': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'games.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
     'games.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'games.verify': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'reviews.store': { paramsTuple: [ParamValue]; params: {'game_id': ParamValue} }
+    'reviews.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'reviews.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   GET: {
     'home': { paramsTuple?: []; params?: {} }
@@ -44,15 +48,19 @@ export type ScannedRoutes = {
     'session.store': { paramsTuple?: []; params?: {} }
     'session.destroy': { paramsTuple?: []; params?: {} }
     'games.store': { paramsTuple?: []; params?: {} }
+    'reviews.store': { paramsTuple: [ParamValue]; params: {'game_id': ParamValue} }
   }
   PUT: {
     'games.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'reviews.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   PATCH: {
     'games.update': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'games.verify': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
   DELETE: {
     'games.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
+    'reviews.destroy': { paramsTuple: [ParamValue]; params: {'id': ParamValue} }
   }
 }
 declare module '@adonisjs/core/types/http' {

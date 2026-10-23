@@ -16,6 +16,13 @@ export default class User extends compose(UserSchema, withAuthFinder(hash)) {
   @hasMany(() => Review)
   declare reviews: HasMany<typeof Review>
 
+  /**
+   * Vrai si l'utilisateur a le rôle admin (colonne role)
+   */
+  get isAdmin() {
+    return this.role === 'admin'
+  }
+
   get initials() {
     const [first, last] = this.fullName ? this.fullName.split(' ') : this.email.split('@')
     if (first && last) {

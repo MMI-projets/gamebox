@@ -1,7 +1,9 @@
 import Page from '~/components/page'
 import AppLayout from '~/layouts/app'
 import { Gamepad2, Plus } from 'lucide-react'
-import { usePage } from '@inertiajs/react'
+import { useState } from 'react'
+import { urlFor } from '~/client'
+import { router, usePage } from '@inertiajs/react'
 import { Link } from '@adonisjs/inertia/react'
 import { type Data } from '@generated/data'
 import { type InertiaProps } from '~/types'
@@ -10,9 +12,27 @@ import { type InertiaProps } from '~/types'
  * Liste des jeux. Les props viennent de GamesController.index :
  * inertia.render('games/index', { games: ... })
  */
-export default function GamesIndex({ games }: InertiaProps<{ games: Data.Game[] }>) {
+type Props = InertiaProps<{
+  games: Data.Game[]
+  genres: string[]
+  filters: { search: string; genre: string; sort: string }
+}>
+
+export default function GamesIndex({ games, genres, filters }: Props) {
   // Utilisateur connecté (partagé avec toutes les pages par le middleware Inertia)
   const { user } = usePage().props
+  const [search, setSearch] = useState(filters.search)
+
+  /**
+   * Recharge la liste avec les nouveaux filtres dans l'URL
+   * (/games?search=...&genre=...&sort=...). Les filtres vides sont retirés.
+   */
+  const applyFilters = (changes: Partial<Props['filters']>) => {
+    const query = Object.fromEntries(
+      Object.entries({ ...filters, search, ...changes }).filter(([, value]) => value !== '')
+    )
+    router.get(urlFor('games.index'), query, { preserveState: true, replace: true })
+  }
 
   return (
     <Page
@@ -27,6 +47,49 @@ export default function GamesIndex({ games }: InertiaProps<{ games: Data.Game[] 
         )
       }
     >
+      {/* Recherche, filtre et tri — mise en page à faire */}
+      <form
+        className="game-filters"
+        onSubmit={(event) => {
+          event.preventDefault()
+          applyFilters({})
+        }}
+      >
+        <input
+          type="search"
+          className="field__input"
+          placeholder="Rechercher un jeu…"
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
+        />
+        <select
+          className="field__input"
+          value={filters.genre}
+          onChange={(event) => applyFilters({ genre: event.target.value })}
+          aria-label="Filtrer par genre"
+        >
+          <option value="">Tous les genres</option>
+          {genres.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre}
+            </option>
+          ))}
+        </select>
+        <select
+          className="field__input"
+          value={filters.sort}
+          onChange={(event) => applyFilters({ sort: event.target.value })}
+          aria-label="Trier"
+        >
+          <option value="title">Titre (A → Z)</option>
+          <option value="rating">Mieux notés</option>
+          <option value="recent">Ajouts récents</option>
+        </select>
+        <button type="submit" className="btn btn--secondary">
+          Rechercher
+        </button>
+      </form>
+
       {games.length === 0 ? (
         <div className="empty">
           <div className="empty__mark">
@@ -53,6 +116,12 @@ export default function GamesIndex({ games }: InertiaProps<{ games: Data.Game[] 
                   <span className="game-card__meta">
                     {game.publisher}
                     {game.releaseDate && ` · ${game.releaseDate.slice(0, 4)}`}
+                  </span>
+                  <span className="game-card__meta">
+                    {game.averageRating !== null
+                      ? `${game.averageRating} ★ · ${game.reviewsCount} critique${game.reviewsCount > 1 ? 's' : ''}`
+                      : 'Pas encore noté'}
+                    {!game.isVerified && ' · non vérifié'}
                   </span>
                 </div>
               </Link>
