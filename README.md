@@ -112,4 +112,50 @@ node ace users:promote email@exemple.fr
 
 ## Utilisation de l'IA
 
-Aide étape par étape de l'IA, me donne les étapes je les réalises si y'a une erreur il m'aiguille sur l'erreur que je corrige et si je n'y arrive pas, il corrige pour moi et ainsi de suite.
+<!-- ✏️ Pré-rempli : relis, corrige et ajoute ton propre ressenti avant le rendu. -->
+
+### Outil utilisé
+
+**Claude Code** model Opus 5.5 en Médium, utilisé directement dans VS Code.
+
+### Comment je l'ai utilisé
+
+J'ai utilisé l'IA comme un **professeur particulier** plutôt que comme un générateur de code :
+
+1. **Conception** : on a d'abord réfléchi ensemble aux tables, aux champs et aux relations. L'IA me posait des questions (une critique par jeu ? note sur combien ? qui ajoute les jeux ?) et je faisais les choix, l'IA me disais ce qui était bon et pas bon dans mes choix.
+2. **Développement pas à pas** : pour chaque étape (migrations, modèles, routes, contrôleur, validation, pages), l'IA m'expliquait le concept et me donnait une consigne, je codais, puis elle relisait mon code et m'indiquait les erreurs à corriger.
+3. **Quand je bloquais**, elle corrigeait à ma place en expliquant pourquoi.
+4. **Fin du projet** : par manque de temps, je lui ai confié une plus grande partie du back-end ( droits d'accès, profil) et je me suis concentré sur le front (thème rétro en CSS).
+5. **Exercice de débogage** : pour le CSS, je lui ai demandé d'écrire des feuilles contenant volontairement des erreurs, que je devais retrouver avec l'inspecteur du navigateur ou en regardant le code.
+
+### Avantages
+
+- Des **explications adaptées** à mon niveau, au moment où j'en avais besoin, sans chercher pendant des heures dans la documentation.
+- Une **relecture immédiate** de mon code, avec la cause des erreurs et pas seulement la correction.
+- L'IA **testait** les fonctionnalités (droits d'accès, validation, pages) et vérifiait le code (TypeScript, ESLint) après chaque modification.
+- Elle m'a fait découvrir des bonnes pratiques : ne jamais faire confiance aux données du navigateur, vérifier les droits côté serveur, ne pas exposer l'email sur un profil public.
+
+### Difficultés
+
+- **Le risque de ne plus rien comprendre** : quand l'IA écrit beaucoup de code d'un coup, il faut prendre le temps de relire chaque fichier pour pouvoir l'expliquer.
+- **Rester raisonnable** : j'avais beaucoup d'idées (demandes de modification validées par un admin, commentaires…), l'IA m'a aidé à les classer entre indispensable et bonus.
+
+### Erreurs rencontrées et corrigées
+
+| Erreur                                                 | Cause                                                                                                                      | Correction                                               |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| La migration `games` ne se lançait pas                 | écrite au format Knex (`exports.up = function (knex)`) au lieu du format AdonisJS                                          | réécrite avec `export default class extends BaseSchema`  |
+| Migration `users` qui aurait cassé la table            | elle recréait `email` et `password`, déjà existants, et le `down()` les supprimait                                         | une migration `alter` qui n'ajoute que la colonne `role` |
+| `'belongsTo' is declared but never used`               | import inutile dans le modèle `User`                                                                                       | suppression de l'import                                  |
+| `Cannot read properties of undefined (reading 'name')` | `controllers.Games` n'existait pas : le contrôleur n'avait pas été généré                                                  | `node ace make:controller games --resource`              |
+| `/games/create` accessible sans être connecté          | la route publique `/games/:id` capturait `create` comme un id                                                              | contrainte `.where('id', router.matchers.number())`      |
+| Page blanche sur `/games`                              | la méthode `index` du contrôleur était vide                                                                                | ajout de `inertia.render(...)`                           |
+| Erreur `E_ROW_NOT_FOUND`                               | base vide : `findOrFail` ne trouvait aucun jeu                                                                             | comportement normal (404), ajout de jeux                 |
+| JSX invalide sur la fiche d'un jeu                     | accolades en trop autour de plusieurs éléments, `&&` au lieu de `                                                          |                                                          | `   | correction de la syntaxe |
+| Thème sombre ignoré                                    | `::root` au lieu de `:root` dans le CSS                                                                                    | correction du sélecteur                                  |
+| Styles CSS ignorés (exercice)                          | `;` manquant, faute dans une variable, classe mal écrite, unité oubliée, nom d'animation, `content` manquant sur `::after` | corrigés avec l'inspecteur du navigateur                 |
+
+### Ce que j'en retiens
+
+
+L'IA m'a fait gagner beaucoup de temps, mais elle ne remplace pas la compréhension : je dois être capable d'expliquer chaque fichier. Le plus efficace a été de lui demander de **m'expliquer et de me corriger** plutôt que de tout faire à ma place.
